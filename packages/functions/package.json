@@ -1,0 +1,22 @@
+{
+  "name": "@online-tv/functions",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "sst bind 'vitest'",
+    "typecheck": "tsc -noEmit"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.111",
+    "@types/node": "^18.14.2",
+    "sst": "^2.0.38"
+  },
+  "dependencies": {
+    "@trpc/server": "^10.13.0",
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer": "^19.7.2",
+    "puppeteer-core": "^19.7.2",
+    "sst": "^2.0.38",
+    "zod": "^3.20.6"
+  }
+}
