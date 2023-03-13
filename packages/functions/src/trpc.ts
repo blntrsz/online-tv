@@ -1,7 +1,7 @@
 import { initTRPC } from "@trpc/server";
 import { z } from "zod";
-import chrome from "chrome-aws-lambda";
-import puppeteer from "puppeteer";
+// @ts-ignore
+const chrome = require('chrome-aws-lambda');
 
 export const t = initTRPC.create();
 
@@ -11,9 +11,12 @@ const INDAVIDEO_SEARCH_URL = `${INDAVIDEO_URL}search/text/`;
 
 export const appRouter = t.router({
   getIndavideoSearch: t.procedure.input(z.string()).query(async (req) => {
-    const browser = await puppeteer.launch({
+    const browser = await chrome.puppeteer.launch({
       args: chrome.args,
+      defaultViewport: chrome.defaultViewport,
       executablePath: await chrome.executablePath,
+      headless: chrome.headless,
+      ignoreHTTPSErrors: true,
     });
     const page = await browser.newPage();
 
@@ -38,10 +41,13 @@ export const appRouter = t.router({
 
     return results as { title: string; href: string }[];
   }),
-  getIndavideoLinkVideo: t.procedure.input(z.string()).query(async (req) => {
-    const browser = await puppeteer.launch({
+  getIndavideoLinkVideo: t.procedure.input(z.string()).query(async (req): Promise<{ link: string}> => {
+    const browser = await chrome.puppeteer.launch({
       args: chrome.args,
+      defaultViewport: chrome.defaultViewport,
       executablePath: await chrome.executablePath,
+      headless: chrome.headless,
+      ignoreHTTPSErrors: true,
     });
     const page = await browser.newPage();
 

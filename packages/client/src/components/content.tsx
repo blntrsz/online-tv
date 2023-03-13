@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useKeyboard } from "../use-keyboard";
 import { isTagFocused } from "../utils/is-tag-focused";
-import { focusFirstFocusableElement, selectFocusableElements } from "../utils/focus-utils";
+import {
+  focusFirstFocusableElement,
+  selectFocusableElements,
+} from "../utils/focus-utils";
 
 function upAndDownHandler() {
   if (isTagFocused("main")) {
@@ -20,7 +23,7 @@ function upAndDownHandler() {
 function leftRightHandler(directon: 1 | -1) {
   const handler = (tag: "main" | "header") => {
     if (isTagFocused(tag)) {
-      const selectors = selectFocusableElements(tag)
+      const selectors = selectFocusableElements(tag);
 
       for (let index = 0; index < selectors.length; index++) {
         if (selectors[index] === document.activeElement) {

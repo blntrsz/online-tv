@@ -15,13 +15,11 @@ export function IndavideoPlayer() {
     <iframe
       title="indavideo video player"
       allowFullScreen
-      scrolling="no"
       className="indavideo-player"
       id="player-06fc090308"
       width="640"
       height="360"
-      src={data.link}
-      frameBorder="0"
+      src={data?.link}
     ></iframe>
   );
 }
